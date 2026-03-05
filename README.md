@@ -25,22 +25,22 @@ A rich statusline with cumulative cost tracking, git info, context usage, and 4 
 
 **Default** — clean, familiar colors
 ```
-chrisanthony team @tribes.agency  [Opus] ▓▓▓▓░░░░░░ 42%  $1.247 ($8.530 total)  15m24s +186 -43   feature/my-branch
+jsmith pro @acme.dev  [Opus] ▓▓▓▓░░░░░░ 42%  $1.247 ($8.530 total)  15m24s +186 -43   feature/my-branch
 ```
 
 **Cool Tones** — blues, purples, gold accents
 ```
-chrisanthony TEAM @tribes.agency  Opus ████░░░░░░ 42%  $1.247 ($8.530)  15m24s +186 -43  feature/my-branch
+jsmith PRO @acme.dev  Opus ████░░░░░░ 42%  $1.247 ($8.530)  15m24s +186 -43  feature/my-branch
 ```
 
 **Minimal Mono** — muted tones, color only for alerts
 ```
-chrisanthony TEAM @tribes.agency | Opus ▓▓▓▓░░░░░░ 42% | $1.247 ($8.530) | 15m24s +186 -43  feature/my-branch
+jsmith PRO @acme.dev | Opus ▓▓▓▓░░░░░░ 42% | $1.247 ($8.530) | 15m24s +186 -43  feature/my-branch
 ```
 
 **Neon Terminal** — high contrast, retro hacker aesthetic
 ```
-chrisanthony TEAM @tribes.agency  Opus ████▁▁▁▁▁▁ 42%  $1.247 ($8.530)  15m24s +186 -43  feature/my-branch
+jsmith PRO @acme.dev  Opus ████▁▁▁▁▁▁ 42%  $1.247 ($8.530)  15m24s +186 -43  feature/my-branch
 ```
 
 #### Install
