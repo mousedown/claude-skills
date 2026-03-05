@@ -24,23 +24,23 @@ A rich statusline with cumulative cost tracking, git info, context usage, and 4 
 #### Themes
 
 **Default** — clean, familiar colors
-```
-jsmith pro @acme.dev  [Opus] ▓▓▓▓░░░░░░ 42%  $1.247 ($8.530 total)  15m24s +186 -43   feature/my-branch
+```ansi
+[36mjsmith[0m [34mPRO[0m [37m@Acme[0m  [32m[Opus] ▓▓▓▓░░░░░░ 42%[0m  [35m$1.247[0m [90m($185.230 total)[0m  [90m15m24s[0m [32m+186[0m [31m-43[0m  [36m feature/auth-flow[0m
 ```
 
 **Cool Tones** — blues, purples, gold accents
-```
-jsmith PRO @acme.dev  Opus ████░░░░░░ 42%  $1.247 ($8.530)  15m24s +186 -43  feature/my-branch
+```ansi
+[1;34mjsmith[0m [38;5;69mPRO[0m [37m@Acme[0m  [38;5;69mOpus ████░░░░░░ 42%[0m  [38;5;183m$1.247[0m [38;5;105m($189.693)[0m  [38;5;105m15m24s[0m [38;5;114m+186[0m [38;5;174m-43[0m [38;5;73m feature/auth-flow[0m
 ```
 
 **Minimal Mono** — muted tones, color only for alerts
-```
-jsmith PRO @acme.dev | Opus ▓▓▓▓░░░░░░ 42% | $1.247 ($8.530) | 15m24s +186 -43  feature/my-branch
+```ansi
+[1;37mjsmith[0m [90mPRO[0m [37m@Acme[0m [90m|[0m [90mOpus ▓▓▓▓░░░░░░ 42%[0m [90m|[0m [90m$1.247 ($189.693)[0m [90m|[0m [90m15m24s[0m [32m+186[0m [31m-43[0m [90m feature/auth-flow[0m
 ```
 
 **Neon Terminal** — high contrast, retro hacker aesthetic
-```
-jsmith PRO @acme.dev  Opus ████▁▁▁▁▁▁ 42%  $1.247 ($8.530)  15m24s +186 -43  feature/my-branch
+```ansi
+[1;38;5;46mjsmith[0m [1;38;5;51mPRO[0m [37m@Acme[0m  [38;5;103mOpus ████▁▁▁▁▁▁ 42%[0m  [1;38;5;208m$1.247[0m [38;5;240m($189.693)[0m  [38;5;240m15m24s[0m [1;38;5;46m+186[0m [1;38;5;196m-43[0m [1;38;5;51m feature/auth-flow[0m
 ```
 
 #### Install
@@ -89,8 +89,8 @@ A focused statusline for the [GSD workflow](https://github.com/get-shit-done-ai/
 - Color-coded: green → yellow → orange → red/blinking
 - GSD update notification
 
-```
-⬆ /gsd:update │ Sonnet │ my-app █████░░░░░ 53%
+```ansi
+[33m⬆ /gsd:update[0m │ [2mSonnet[0m │ [2mmy-app[0m [32m█████░░░░░ 53%[0m
 ```
 
 #### Install
