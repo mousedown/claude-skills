@@ -1,4 +1,5 @@
 #!/bin/zsh
+# Theme: Cool Tones — blues, purples, gold accents
 INPUT=$(cat)
 
 # Context window
@@ -34,18 +35,18 @@ if [ -f "$AUTH_CACHE" ]; then
   AUTH_PLAN=$(jq -r '.subscriptionType // ""' "$AUTH_CACHE" 2>/dev/null)
 fi
 
-# Format user display
+# --- THEME: Cool Tones ---
+# 256-color codes: 69=cornflower blue, 220=gold, 183=lavender, 73=teal, 105=slate purple
 USER_INFO=""
 if [ -n "$AUTH_EMAIL" ]; then
-  # Show short email (before @) + plan
   SHORT_USER=$(echo "$AUTH_EMAIL" | cut -d@ -f1)
   PLAN_BADGE=""
   case "$AUTH_PLAN" in
-    max) PLAN_BADGE="\033[35mMAX\033[0m" ;;
-    pro) PLAN_BADGE="\033[34mPRO\033[0m" ;;
-    *) PLAN_BADGE="\033[90m${AUTH_PLAN}\033[0m" ;;
+    max) PLAN_BADGE="\033[38;5;220mMAX\033[0m" ;;
+    pro) PLAN_BADGE="\033[38;5;69mPRO\033[0m" ;;
+    *) PLAN_BADGE="\033[38;5;105m$(echo "$AUTH_PLAN" | tr '[:lower:]' '[:upper:]')\033[0m" ;;
   esac
-  USER_INFO="\033[36m${SHORT_USER}\033[0m ${PLAN_BADGE}"
+  USER_INFO="\033[1;34m${SHORT_USER}\033[0m ${PLAN_BADGE}"
 fi
 
 # Session cost tracking
@@ -54,7 +55,6 @@ CURRENT_SESSION_COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0')
 
 STATE_FILE="$HOME/.claude/cost_state.json"
 
-# Load or initialize state
 if [ -f "$STATE_FILE" ]; then
   PREV_TOTAL=$(jq -r '.previous_total // 0' "$STATE_FILE")
   LAST_SESSION_ID=$(jq -r '.last_session_id // ""' "$STATE_FILE")
@@ -65,13 +65,11 @@ else
   LAST_SESSION_COST=0
 fi
 
-# If new session, roll previous session's final cost into the total
 if [ -n "$CURRENT_SESSION_ID" ] && [ "$CURRENT_SESSION_ID" != "$LAST_SESSION_ID" ]; then
   PREV_TOTAL=$(echo "$PREV_TOTAL + $LAST_SESSION_COST" | bc)
   LAST_SESSION_ID="$CURRENT_SESSION_ID"
 fi
 
-# Always update last known cost for this session
 jq -n \
   --argjson pt "$PREV_TOTAL" \
   --arg sid "$LAST_SESSION_ID" \
@@ -79,12 +77,11 @@ jq -n \
   '{previous_total: $pt, last_session_id: $sid, last_session_cost: $lsc}' \
   > "$STATE_FILE"
 
-# Cumulative cost = all previous sessions + current session
 TOTAL_COST=$(echo "$PREV_TOTAL + $CURRENT_SESSION_COST" | bc)
 TOTAL_COST_FMT=$(printf "%.3f" "$TOTAL_COST")
 SESSION_COST_FMT=$(printf "%.3f" "$CURRENT_SESSION_COST")
 
-# Duration (ms -> readable)
+# Duration
 DURATION_MS=$(echo "$INPUT" | jq -r '.cost.total_duration_ms // 0')
 DURATION_S=$(echo "$DURATION_MS / 1000" | bc)
 if [ "$DURATION_S" -ge 3600 ]; then
@@ -95,7 +92,7 @@ else
   DURATION_DISPLAY="${DURATION_S}s"
 fi
 
-# Git info (from cwd)
+# Git info
 CWD=$(echo "$INPUT" | jq -r '.cwd // ""')
 GIT_INFO=""
 if [ -n "$CWD" ]; then
@@ -104,17 +101,17 @@ if [ -n "$CWD" ]; then
     GIT_STATUS=$(git -C "$CWD" status --porcelain 2>/dev/null)
     STAGED=$(echo "$GIT_STATUS" | grep -c "^[MADRC]" 2>/dev/null || echo 0)
     MODIFIED=$(echo "$GIT_STATUS" | grep -c "^.[MD]" 2>/dev/null || echo 0)
-    GIT_INFO="\033[36m ${GIT_BRANCH}\033[0m"
-    if [ "$STAGED" -gt 0 ]; then GIT_INFO="${GIT_INFO} \033[32m+${STAGED}\033[0m"; fi
-    if [ "$MODIFIED" -gt 0 ]; then GIT_INFO="${GIT_INFO} \033[33m~${MODIFIED}\033[0m"; fi
+    GIT_INFO="\033[38;5;73m ${GIT_BRANCH}\033[0m"
+    if [ "$STAGED" -gt 0 ]; then GIT_INFO="${GIT_INFO} \033[38;5;114m+${STAGED}\033[0m"; fi
+    if [ "$MODIFIED" -gt 0 ]; then GIT_INFO="${GIT_INFO} \033[38;5;220m~${MODIFIED}\033[0m"; fi
   fi
 fi
 
-# Progress bar (10 blocks)
+# Progress bar — uses block chars with cool-tone coloring
 FILLED=$(echo "$USED / 10" | bc)
 BAR=""
 for i in $(seq 1 10); do
-  if [ "$i" -le "$FILLED" ]; then BAR="${BAR}▓"; else BAR="${BAR}░"; fi
+  if [ "$i" -le "$FILLED" ]; then BAR="${BAR}█"; else BAR="${BAR}░"; fi
 done
 
 # Lines changed
@@ -122,22 +119,22 @@ LINES_ADD=$(echo "$INPUT" | jq -r '.cost.total_lines_added // 0')
 LINES_DEL=$(echo "$INPUT" | jq -r '.cost.total_lines_removed // 0')
 LINES_INFO=""
 if [ "$LINES_ADD" -gt 0 ] || [ "$LINES_DEL" -gt 0 ]; then
-  LINES_INFO=" \033[32m+${LINES_ADD}\033[0m \033[31m-${LINES_DEL}\033[0m"
+  LINES_INFO=" \033[38;5;114m+${LINES_ADD}\033[0m \033[38;5;174m-${LINES_DEL}\033[0m"
 fi
 
-# Context warning (>200k tokens)
+# Context warning
 EXCEEDS_200K=$(echo "$INPUT" | jq -r '.exceeds_200k_tokens // false')
 CTX_WARN=""
 if [ "$EXCEEDS_200K" = "true" ]; then
-  CTX_WARN=" \033[31;1m⚠ 200k+\033[0m"
+  CTX_WARN=" \033[38;5;196m⚠ 200k+\033[0m"
 fi
 
-# Color context bar by usage
-if [ "$USED" -ge 90 ]; then CTX_COLOR="\033[31m"
-elif [ "$USED" -ge 70 ]; then CTX_COLOR="\033[33m"
-else CTX_COLOR="\033[32m"
+# Context color — blue gradient to warm warnings
+if [ "$USED" -ge 90 ]; then CTX_COLOR="\033[38;5;196m"
+elif [ "$USED" -ge 70 ]; then CTX_COLOR="\033[38;5;220m"
+else CTX_COLOR="\033[38;5;69m"
 fi
 
 RST="\033[0m"
 
-echo -e "${USER_INFO}  ${CTX_COLOR}[${MODEL}] ${BAR} ${USED}%${RST}${CTX_WARN}  \033[35m\$${SESSION_COST_FMT}${RST} \033[90m(\$${TOTAL_COST_FMT} total)${RST}  \033[90m${DURATION_DISPLAY}${RST}${LINES_INFO}  ${GIT_INFO}"
+echo -e "${USER_INFO}  ${CTX_COLOR}${MODEL} ${BAR} ${USED}%${RST}${CTX_WARN}  \033[38;5;183m\$${SESSION_COST_FMT}${RST} \033[38;5;105m(\$${TOTAL_COST_FMT})${RST}  \033[38;5;105m${DURATION_DISPLAY}${RST}${LINES_INFO} ${GIT_INFO}"
