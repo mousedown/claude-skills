@@ -4,6 +4,11 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TARGET="$HOME/.claude/statusline.sh"
+CORE_TARGET="$HOME/.claude/statusline-core.sh"
+
+# Always install/update core
+cp "$SCRIPT_DIR/_core.sh" "$CORE_TARGET"
+chmod +x "$CORE_TARGET"
 
 case "$1" in
   minimal)
