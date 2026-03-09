@@ -146,7 +146,7 @@ echo "Installed script to $DEST_PATH"
 
 # ── Parse the statusLine command from setup.json ────────────────────
 # Extract the command value from settings_snippet.statusLine.command
-STATUS_CMD=$(grep '"command"' "$SETUP_TMP" | head -1 | sed 's/.*"command"[[:space:]]*:[[:space:]]*"//' | sed 's/".*//')
+STATUS_CMD=$(grep '"command"[[:space:]]*:' "$SETUP_TMP" | head -1 | sed 's/.*"command"[[:space:]]*:[[:space:]]*"//' | sed 's/".*//')
 
 if [ -z "$STATUS_CMD" ]; then
   # Fallback: build command from extension
