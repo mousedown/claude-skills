@@ -1,0 +1,27 @@
+{
+  "name": "Compact Statusline",
+  "description": "Ultra-compact three-field statusline for developers who want the bare minimum. Context percentage, session cost, and git branch — nothing else.",
+  "preview": "42% · $0.24 · main",
+  "install": {
+    "1_copy_script": "cp statuslines/compact-statusline/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "jq",
+    "git"
+  ],
+  "features": [
+    "Context window percentage",
+    "Session cost (2 decimal precision)",
+    "Git branch (when in a repo)",
+    "Ultra-compact: three fields, dot separators, no icons",
+    "Context color escalates at 65% and 85% usage"
+  ]
+}

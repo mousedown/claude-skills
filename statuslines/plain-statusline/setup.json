@@ -1,0 +1,26 @@
+{
+  "name": "Plain Text Statusline",
+  "description": "Zero ANSI color codes, pure plain text with pipe separators. Works in log files, CI output, non-color terminals, and when piped to files.",
+  "preview": "Sonnet 3.7 | 42% | $0.124 | 15m32s | main",
+  "install": {
+    "1_copy_script": "cp statuslines/plain-statusline/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"],
+  "features": [
+    "Pipe | separators between fields",
+    "Model name",
+    "Context window percentage",
+    "Session cost",
+    "Session duration",
+    "Git branch display",
+    "Zero ANSI escape codes — safe for logs, CI, and piped output"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Time Machine Statusline",
+  "description": "Timestamp-centric statusline useful for long sessions. Displays wall-clock time, session duration, cost per minute, lines per minute, and git branch.",
+  "preview": "◷ 14:32  Sonnet  ▓▓▓░░░░░░░ 32%  25m14s  $0.005/min  +7 ln/min   main",
+  "install": {
+    "1_copy_script": "cp statuslines/time-machine/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "jq",
+    "bc",
+    "git"
+  ],
+  "features": [
+    "Wall-clock time (HH:MM) from system",
+    "Session duration prominently displayed",
+    "Model name",
+    "Context window usage bar with color coding",
+    "Cost per minute (cost / duration_minutes)",
+    "Lines added per minute (when > 0)",
+    "Git branch (when in a repo)",
+    "Time-themed ◷ separator symbol"
+  ]
+}

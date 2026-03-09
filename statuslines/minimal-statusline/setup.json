@@ -1,0 +1,30 @@
+{
+  "name": "Minimal Statusline",
+  "description": "Monochrome statusline with dim separators. Color used only for context warnings; everything else stays dim and out of the way.",
+  "preview": "Sonnet │ 42% │ $0.247 │ 15m24s │ main",
+  "install": {
+    "1_copy_script": "cp statuslines/minimal-statusline/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "jq",
+    "bc",
+    "git"
+  ],
+  "features": [
+    "Model name (shortened)",
+    "Context window percentage with threshold warnings",
+    "Session cost",
+    "Session duration",
+    "Git branch (when in a repo)",
+    "Monochrome aesthetic — dim text, no decoration",
+    "Color escalates only at 75% and 90% context usage"
+  ]
+}

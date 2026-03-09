@@ -1,0 +1,16 @@
+{
+  "name": "LCARS Statusline",
+  "description": "LCARS sci-fi display — Star Trek inspired panel brackets, ALL CAPS labels, orange/gold/lavender/cyan palette",
+  "install": {
+    "1_copy_script": "cp statuslines/lcars/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"]
+}

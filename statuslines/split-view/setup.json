@@ -1,0 +1,17 @@
+{
+  "name": "Split View Statusline",
+  "description": "Left+right split layout: git status and context on the left, cost/model/time right-aligned. Fills the full terminal width.",
+  "install": {
+    "1_copy_script": "cp statuslines/split-view/statusline.js ~/.claude/statusline.js",
+    "2_make_executable": "chmod +x ~/.claude/statusline.js",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "node ~/.claude/statusline.js"
+    }
+  },
+  "requirements": ["node"],
+  "layout": "split"
+}

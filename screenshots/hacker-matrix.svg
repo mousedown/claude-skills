@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="56">
+  <rect width="780" height="56" rx="6" ry="6" fill="#020602"/>
+  <rect width="780" height="24" rx="6" ry="6" fill="#020602"/>
+  <rect width="780" height="4" y="20" fill="#020602"/>
+  <circle cx="16" cy="12" r="5" fill="#ff5f57"/>
+  <circle cx="36" cy="12" r="5" fill="#febc2e"/>
+  <circle cx="56" cy="12" r="5" fill="#28c840"/>
+  <rect width="780" height="1" y="24" fill="#313244" opacity="0.5"/>
+  <text y="34" x="14" font-family="'Cascadia Code', 'Fira Code', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" font-size="13" xml:space="preserve">
+    <tspan fill="#1a5c1a" >// </tspan>
+    <tspan fill="#1a5c1a" >claude.</tspan>
+    <tspan fill="#22bb22" >sonnet</tspan>
+    <tspan fill="#1a5c1a" > :: </tspan>
+    <tspan fill="#22bb22" >[ctx:42%]</tspan>
+    <tspan fill="#1a5c1a" > :: </tspan>
+    <tspan fill="#1a5c1a" >cost[$0.3240]</tspan>
+    <tspan fill="#1a5c1a" > :: </tspan>
+    <tspan fill="#1a5c1a" >t[8m12s]</tspan>
+    <tspan fill="#1a5c1a" > :: </tspan>
+    <tspan fill="#1a5c1a" >+186/-43</tspan>
+    <tspan fill="#1a5c1a" > :: </tspan>
+    <tspan fill="#1a5c1a" >ref[feature/auth-flow]</tspan>
+  </text>
+</svg>

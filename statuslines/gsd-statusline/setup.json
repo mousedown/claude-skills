@@ -2,21 +2,23 @@
   "name": "GSD Statusline",
   "description": "Claude Code statusline showing model, current task, directory, and context usage with color-coded progress bar",
   "install": {
-    "1_copy_script": "Copy gsd-statusline.js to ~/.claude/hooks/gsd-statusline.js",
-    "2_add_to_settings": "Add the following to ~/.claude/settings.json"
+    "1_copy_script": "cp statuslines/gsd-statusline/gsd-statusline.js ~/.claude/statusline.js",
+    "2_make_executable": "chmod +x ~/.claude/statusline.js",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
   },
   "settings_snippet": {
     "statusLine": {
       "type": "command",
-      "command": "node \"~/.claude/hooks/gsd-statusline.js\""
+      "command": "node ~/.claude/statusline.js"
     }
   },
+  "requirements": ["node"],
   "features": [
     "Model name display",
     "Current GSD task (from todos)",
     "Working directory name",
     "Context window usage bar (scaled to 80% limit)",
-    "Color-coded: green -> yellow -> orange -> red/blinking",
+    "Context urgency escalates from calm to warning to critical",
     "GSD update notification"
   ]
 }

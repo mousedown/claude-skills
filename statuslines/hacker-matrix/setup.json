@@ -1,0 +1,31 @@
+{
+  "name": "Hacker Matrix Statusline",
+  "description": "Classic phosphor-green terminal aesthetic with :: separators and bracket-wrapped fields. Monochrome. No frills.",
+  "install": {
+    "1_copy_script": "cp statuslines/hacker-matrix/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the settings_snippet below to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "bash ~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "bash",
+    "jq",
+    "bc",
+    "git"
+  ],
+  "features": [
+    "Phosphor green monochrome palette (bright green for model, dim green for structure)",
+    "// claude.<model> prefix format",
+    "Double-colon :: separators",
+    "Context label: [ctx:N%], [WARN:N%], or [CRIT:N%] — only field that changes color",
+    "Cost in cost[$0.0000] format",
+    "Duration in t[Xm Ys] format",
+    "Lines added/removed when non-zero",
+    "Git branch in ref[branch] format"
+  ]
+}

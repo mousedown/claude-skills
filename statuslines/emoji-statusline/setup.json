@@ -1,0 +1,25 @@
+{
+  "name": "Emoji Dashboard Statusline",
+  "description": "Expressive emoji-based statusline showing model, context bar, cost, duration, lines changed, and git branch",
+  "preview": "🤖 Sonnet  📗 ████░░░░░░ 42%  💵 $0.124  ⏱ 15m32s  ✏️  +186 -43  🌿 main",
+  "install": {
+    "1_copy_script": "cp statuslines/emoji-statusline/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"],
+  "features": [
+    "Emoji icons for every metric",
+    "10-segment context progress bar",
+    "Session cost display",
+    "Session duration",
+    "Lines added/removed",
+    "Git branch display"
+  ]
+}
