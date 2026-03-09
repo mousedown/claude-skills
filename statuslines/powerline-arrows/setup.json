@@ -1,0 +1,30 @@
+{
+  "name": "Powerline Arrows Statusline",
+  "description": "Powerline/Starship-inspired statusline with ❯ arrow separators, bold model name, context bar, cost, duration, lines changed, and git branch info",
+  "install": {
+    "1_copy_script": "cp statuslines/powerline-arrows/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "jq",
+    "bc",
+    "git"
+  ],
+  "features": [
+    "Bold model name in cyan",
+    "Context bar with ━ filled / ─ empty segments (10 total)",
+    "Color-coded context percentage (green/yellow/red)",
+    "Session cost with $ prefix",
+    "Session duration (formatted as h/m/s)",
+    "Lines added (green) and removed (red) when non-zero",
+    "Git branch with staged ●count (green) and modified ●count (yellow)",
+    "Dim ❯ arrow separators to let content stand out"
+  ]
+}

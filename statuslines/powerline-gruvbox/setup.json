@@ -1,0 +1,23 @@
+{
+  "name": "Powerline Gruvbox Statusline",
+  "description": "Warm earth-tone Gruvbox-themed powerline statusline with solid segment backgrounds and Nerd Font arrows",
+  "install": {
+    "1_copy_script": "cp statuslines/powerline-gruvbox/powerline-gruvbox.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git", "Nerd Fonts"],
+  "features": [
+    "Gruvbox dark color palette",
+    "Powerline solid segment backgrounds",
+    "Model and git branch segments",
+    "Context bar with color-coded warnings",
+    "Cost, duration, lines changed"
+  ]
+}

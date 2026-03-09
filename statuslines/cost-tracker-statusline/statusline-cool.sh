@@ -1,23 +1,62 @@
 #!/bin/zsh
-# Theme: Cool Tones — blues, purples, gold accents
-source "$HOME/.claude/statusline-core.sh"
+# cost-tracker-statusline — Cool Tones theme (blues, purples, gold accents)
+# Self-contained single file — no external dependencies beyond jq, bc, git
+# 256-color: 69=cornflower blue, 220=gold, 183=lavender, 73=teal, 105=slate purple
 
-# 256-color codes: 69=cornflower blue, 220=gold, 183=lavender, 73=teal, 105=slate purple
-USER_INFO=""
-if [ -n "$SHORT_USER" ]; then
-  PLAN_BADGE=""
-  case "$AUTH_PLAN" in
-    max) PLAN_BADGE="\033[38;5;220mMAX\033[0m" ;;
-    pro) PLAN_BADGE="\033[38;5;69mPRO\033[0m" ;;
-    *) PLAN_BADGE="\033[38;5;105m$(echo "$AUTH_PLAN" | tr '[:lower:]' '[:upper:]')\033[0m" ;;
-  esac
-  USER_INFO="\033[1;34m${SHORT_USER}\033[0m ${PLAN_BADGE}"
-  if [ -n "$AUTH_ORG" ]; then
-    USER_INFO="${USER_INFO} \033[37m@${AUTH_ORG}\033[0m"
+INPUT=$(cat)
+
+# ── Parse input ────────────────────────────────────────────────────────────
+USED=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0')
+MODEL=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"' | sed 's/Claude //')
+CURRENT_SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // ""')
+CURRENT_SESSION_COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0')
+DURATION_MS=$(echo "$INPUT" | jq -r '.cost.total_duration_ms // 0')
+LINES_ADD=$(echo "$INPUT" | jq -r '.cost.total_lines_added // 0')
+LINES_DEL=$(echo "$INPUT" | jq -r '.cost.total_lines_removed // 0')
+EXCEEDS_200K=$(echo "$INPUT" | jq -r '.exceeds_200k_tokens // false')
+CWD=$(echo "$INPUT" | jq -r '.cwd // ""')
+
+# ── Session cost tracking ──────────────────────────────────────────────────
+STATE_FILE="$HOME/.claude/cost_state.json"
+if [ -f "$STATE_FILE" ]; then
+  PREV_TOTAL=$(jq -r '.previous_total // 0' "$STATE_FILE")
+  LAST_SESSION_ID=$(jq -r '.last_session_id // ""' "$STATE_FILE")
+  LAST_SESSION_COST=$(jq -r '.last_session_cost // 0' "$STATE_FILE")
+else
+  PREV_TOTAL=0; LAST_SESSION_ID=""; LAST_SESSION_COST=0
+fi
+if [ -n "$CURRENT_SESSION_ID" ] && [ "$CURRENT_SESSION_ID" != "$LAST_SESSION_ID" ]; then
+  PREV_TOTAL=$(echo "$PREV_TOTAL + $LAST_SESSION_COST" | bc)
+  LAST_SESSION_ID="$CURRENT_SESSION_ID"
+fi
+jq -n --argjson pt "$PREV_TOTAL" --arg sid "$LAST_SESSION_ID" --argjson lsc "$CURRENT_SESSION_COST" \
+  '{previous_total: $pt, last_session_id: $sid, last_session_cost: $lsc}' > "$STATE_FILE"
+TOTAL_COST=$(echo "$PREV_TOTAL + $CURRENT_SESSION_COST" | bc)
+TOTAL_COST_FMT=$(printf "%.3f" "$TOTAL_COST")
+SESSION_COST_FMT=$(printf "%.3f" "$CURRENT_SESSION_COST")
+
+# ── Duration ───────────────────────────────────────────────────────────────
+DURATION_S=$(echo "$DURATION_MS / 1000" | bc)
+if [ "$DURATION_S" -ge 3600 ]; then DURATION_DISPLAY="$((DURATION_S / 3600))h$((DURATION_S % 3600 / 60))m"
+elif [ "$DURATION_S" -ge 60 ]; then DURATION_DISPLAY="$((DURATION_S / 60))m$((DURATION_S % 60))s"
+else DURATION_DISPLAY="${DURATION_S}s"; fi
+
+# ── Git info ───────────────────────────────────────────────────────────────
+GIT_BRANCH=""; STAGED=0; MODIFIED=0
+if [ -n "$CWD" ]; then
+  GIT_BRANCH=$(git -C "$CWD" rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [ -n "$GIT_BRANCH" ]; then
+    GIT_STATUS=$(git -C "$CWD" status --porcelain 2>/dev/null)
+    STAGED=$(echo "$GIT_STATUS" | grep -c "^[MADRC]" 2>/dev/null || echo 0)
+    MODIFIED=$(echo "$GIT_STATUS" | grep -c "^.[MD]" 2>/dev/null || echo 0)
   fi
 fi
 
-# Git
+# ── Progress bar ───────────────────────────────────────────────────────────
+FILLED=$(echo "$USED / 10" | bc)
+RST="\033[0m"
+
+# Git display
 GIT_INFO=""
 if [ -n "$GIT_BRANCH" ]; then
   GIT_INFO="\033[38;5;73m ${GIT_BRANCH}\033[0m"
@@ -45,4 +84,4 @@ elif [ "$USED" -ge 70 ]; then CTX_COLOR="\033[38;5;220m"
 else CTX_COLOR="\033[38;5;69m"
 fi
 
-echo -e "${USER_INFO}  ${CTX_COLOR}${MODEL} ${BAR} ${USED}%${RST}${CTX_WARN}  \033[38;5;183m\$${SESSION_COST_FMT}${RST} \033[38;5;105m(\$${TOTAL_COST_FMT})${RST}  \033[38;5;105m${DURATION_DISPLAY}${RST}${LINES_INFO} ${GIT_INFO}"
+echo -e "${CTX_COLOR}${MODEL} ${BAR} ${USED}%${RST}${CTX_WARN}  \033[38;5;183m\$${SESSION_COST_FMT}${RST} \033[38;5;105m(\$${TOTAL_COST_FMT})${RST}  \033[38;5;105m${DURATION_DISPLAY}${RST}${LINES_INFO} ${GIT_INFO}"

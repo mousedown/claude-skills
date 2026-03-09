@@ -1,0 +1,27 @@
+{
+  "name": "Scoreboard Statusline",
+  "description": "Sports scoreboard / ticker aesthetic where everything is a score or stat. Model shown as team name, context as heart health bar (hearts = remaining capacity), lines as total score, and cost/time as game stats.",
+  "preview": " SONNET  ❤❤❤❤♡♡♡♡♡♡  CTX: 42%  COST: $0.124  TIME: 15m32s  LINES: 186  FIELD: main",
+  "install": {
+    "1_copy_script": "cp statuslines/scoreboard/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"],
+  "features": [
+    "Model displayed as uppercase team name (e.g. SONNET)",
+    "Context shown as heart health bar: filled ❤ = remaining, empty ♡ = used",
+    "Heart color escalates from green to yellow to red as context depletes",
+    "Lines written shown as cumulative score (add + remove)",
+    "Cost with 3 decimal precision",
+    "Duration in compact game-clock format",
+    "Git branch shown as FIELD label",
+    "Bold uppercase labels for scoreboard aesthetic"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Git Dashboard Statusline",
+  "description": "Git-first statusline that makes branch status the star of the show, with staged/modified/untracked counts, ahead/behind remote, and secondary model/context/cost info",
+  "install": {
+    "1_copy_script": "cp statuslines/git-dashboard/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "jq",
+    "bc",
+    "git"
+  ],
+  "features": [
+    "Prominent git branch with  symbol",
+    "Staged files count with ✚ symbol (green)",
+    "Modified files count with ✎ symbol (yellow)",
+    "Untracked files count with ? symbol (gray)",
+    "Ahead ↑ and behind ↓ commit counts vs remote upstream",
+    "Graceful fallback when not in a git repo",
+    "Secondary dim model name, color-coded context %, and cost"
+  ]
+}

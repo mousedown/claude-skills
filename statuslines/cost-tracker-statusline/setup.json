@@ -2,7 +2,7 @@
   "name": "Cost Tracker Statusline",
   "description": "Claude Code statusline with cumulative cost tracking, git branch info, lines changed, and context usage progress bar",
   "install": {
-    "1_copy_script": "Copy statusline.sh to ~/.claude/statusline.sh",
+    "1_copy_script": "cp statuslines/cost-tracker-statusline/statusline.sh ~/.claude/statusline.sh",
     "2_make_executable": "chmod +x ~/.claude/statusline.sh",
     "3_add_to_settings": "Add the following to ~/.claude/settings.json"
   },
@@ -12,7 +12,11 @@
       "command": "~/.claude/statusline.sh"
     }
   },
-  "requirements": ["jq", "bc", "git"],
+  "requirements": [
+    "jq",
+    "bc",
+    "git"
+  ],
   "features": [
     "Model name display",
     "Context window usage bar with color coding",

@@ -1,0 +1,16 @@
+{
+  "name": "Solarized Dark Statusline",
+  "description": "Solarized Dark color scheme — warm amber/cyan accents on cool deep teal-black background, ▸ separators",
+  "install": {
+    "1_copy_script": "cp statuslines/solarized/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Powerline Neon",
+  "description": "Cyberpunk/retro neon statusline with vivid neon backgrounds (hot pink → cyan → lime → violet) and thin powerline arrows. Eye-catching hacker aesthetic.",
+  "style": "powerline-segments",
+  "install": {
+    "1_copy_script": "cp statuslines/powerline-neon/powerline-neon.py ~/.claude/statusline.py",
+    "2_make_executable": "chmod +x ~/.claude/statusline.py",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.py"
+    }
+  },
+  "requirements": [
+    "python3",
+    "git",
+    "Nerd Fonts"
+  ],
+  "features": [
+    "Vivid neon segment backgrounds: hot pink, electric cyan, neon lime, deep violet",
+    "Segment 1: Model name on hot pink background",
+    "Segment 2: Context usage bar — color-coded (cyan/amber/red) by load level",
+    "Segment 3: Session cost on neon lime background",
+    "Segment 4: Git branch with staged/modified counts (when in a repo)",
+    "Segment 5: Duration and lines changed on dark trailer segment",
+    "Thin powerline dividers between sections within segments"
+  ]
+}

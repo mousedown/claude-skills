@@ -1,0 +1,29 @@
+{
+  "name": "Neon Tokyo Statusline",
+  "description": "Cyberpunk-inspired statusline with bright neon colors, diamond separators, and ▮/▯ context bar",
+  "install": {
+    "1_copy_script": "cp statuslines/neon-tokyo/statusline.js ~/.claude/statusline.js",
+    "2_make_executable": "chmod +x ~/.claude/statusline.js",
+    "3_add_to_settings": "Add the settings_snippet below to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "node ~/.claude/statusline.js"
+    }
+  },
+  "requirements": [
+    "node"
+  ],
+  "features": [
+    "Neon color palette (bright cyan, magenta, yellow, red)",
+    "Diamond ◈ separators",
+    "10-segment context bar using ▮ (filled) and ▯ (empty)",
+    "Model name in uppercase, short form",
+    "Cost displayed with ¥ symbol",
+    "Duration (ms converted to h/m/s)",
+    "Lines added/removed (shown only when non-zero)",
+    "Git branch with ⌥ symbol",
+    "Warning colors shift to yellow then red at 65%/85% context"
+  ]
+}

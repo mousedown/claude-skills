@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="56">
+  <rect width="760" height="56" rx="6" ry="6" fill="#1e1e2e"/>
+  <rect width="760" height="24" rx="6" ry="6" fill="#181825"/>
+  <rect width="760" height="4" y="20" fill="#181825"/>
+  <circle cx="16" cy="12" r="5" fill="#ff5f57"/>
+  <circle cx="36" cy="12" r="5" fill="#febc2e"/>
+  <circle cx="56" cy="12" r="5" fill="#28c840"/>
+  <rect x="14" y="29" width="133" height="18" rx="9" ry="9" fill="#cba6f7"/>
+  <text x="22" y="42" font-family="'Cascadia Code','Fira Code','JetBrains Mono',Menlo,monospace" font-size="13" fill="#1e1e2e" font-weight="bold" xml:space="preserve">✦ Sonnet 4.5</text>
+  <rect x="162" y="29" width="133" height="18" rx="9" ry="9" fill="#94e2d5"/>
+  <text x="170" y="42" font-family="'Cascadia Code','Fira Code','JetBrains Mono',Menlo,monospace" font-size="13" fill="#1e1e2e" font-weight="bold" xml:space="preserve">████░░░░ 42%</text>
+  <rect x="310" y="29" width="105" height="18" rx="9" ry="9" fill="#f5c2e7"/>
+  <text x="318" y="42" font-family="'Cascadia Code','Fira Code','JetBrains Mono',Menlo,monospace" font-size="13" fill="#1e1e2e" font-weight="bold" xml:space="preserve">◈ $0.324</text>
+  <rect x="429" y="29" width="162" height="18" rx="9" ry="9" fill="#89dceb"/>
+  <text x="437" y="42" font-family="'Cascadia Code','Fira Code','JetBrains Mono',Menlo,monospace" font-size="13" fill="#1e1e2e" font-weight="bold" xml:space="preserve"> feature/auth-flow</text>
+  <rect x="606" y="29" width="143" height="18" rx="9" ry="9" fill="#45475a"/>
+  <text x="614" y="42" font-family="'Cascadia Code','Fira Code','JetBrains Mono',Menlo,monospace" font-size="13" fill="#bac2de" font-weight="bold" xml:space="preserve">8m12s  +186/-43</text>
+</svg>

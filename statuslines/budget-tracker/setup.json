@@ -1,0 +1,30 @@
+{
+  "name": "Budget Tracker Statusline",
+  "description": "Financial dashboard statusline for Claude Code. Tracks session cost, hourly spend rate, and provides budget warning icons that escalate with spending intensity.",
+  "preview": "💰 Sonnet  $0.124  ~$2.50/hr  38%   main",
+  "install": {
+    "1_copy_script": "cp statuslines/budget-tracker/statusline.py ~/.claude/statusline.py",
+    "2_make_executable": "chmod +x ~/.claude/statusline.py",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "python3 ~/.claude/statusline.py"
+    }
+  },
+  "requirements": [
+    "python3",
+    "git"
+  ],
+  "features": [
+    "Session cost prominently displayed",
+    "Hourly spend rate (cost / session_hours)",
+    "Budget warning icons: 💰 normal, 💸 high spend (>$1/hr), 🚨 very high (>$5/hr)",
+    "Daily spend estimate shown when session > 60s",
+    "Context usage percentage with color coding",
+    "Model name",
+    "Git branch (when in a repo)",
+    "Graceful error handling"
+  ]
+}

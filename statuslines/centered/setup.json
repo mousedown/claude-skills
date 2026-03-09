@@ -1,0 +1,17 @@
+{
+  "name": "Centered Statusline",
+  "description": "All content centered in the terminal. Measures visible content width and adds equal padding on both sides. Looks great on wide terminals.",
+  "install": {
+    "1_copy_script": "cp statuslines/centered/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "tput", "git"],
+  "layout": "centered"
+}

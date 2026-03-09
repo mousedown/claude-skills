@@ -1,0 +1,27 @@
+{
+  "name": "Retro Terminal Statusline",
+  "description": "80s BBS/DOS terminal aesthetic with phosphor-green brackets, block chars, and uppercase identifiers",
+  "preview": "> [SONNET] [CTX:████░░░░░░ 42%] [$0.124] [15m32s] [+186/-43] [MAIN]",
+  "install": {
+    "1_copy_script": "cp statuslines/retro-terminal/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"],
+  "features": [
+    "Model name in ALL CAPS bracket notation: [SONNET]",
+    "Context bar with filled (█) and empty (░) block characters",
+    "Alert-level bracket colors: green (normal), yellow (caution), red (critical)",
+    "Cost in bracket: [$0.124]",
+    "Duration in bracket: [15m32s]",
+    "Lines changed in bracket (only shown when > 0): [+186/-43]",
+    "Git branch in bracket (only shown in git repos): [MAIN]",
+    "Phosphor-green ANSI coloring with dim prompt prefix"
+  ]
+}

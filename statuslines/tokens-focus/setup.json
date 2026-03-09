@@ -1,0 +1,29 @@
+{
+  "name": "Token Focus Statusline",
+  "description": "Information-dense Node.js statusline that makes actual token counts the primary focus. Displays real token numbers (e.g. 83k/200k) when they can be derived from the context window data, falling back to percentages gracefully. Lines changed are shown prominently, and cost uses 4 decimal places for precision.",
+  "preview": "Sonnet  83k/200k ctx  42%  +186 -43  $0.1234  15m32s   main",
+  "install": {
+    "1_copy_script": "cp statuslines/tokens-focus/statusline.js ~/.claude/statusline.js",
+    "2_make_executable": "chmod +x ~/.claude/statusline.js",
+    "3_add_to_settings": "Add to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "node ~/.claude/statusline.js"
+    }
+  },
+  "requirements": ["node"],
+  "command": "node ~/.claude/statusline.js",
+  "features": [
+    "Token counts as primary focus: shows '83k/200k ctx' when derivable",
+    "Derives total window size from used percentage if not provided directly",
+    "Falls back gracefully to percentage-only when token counts unavailable",
+    "Lines added/removed shown prominently in green/red",
+    "Cost with 4 decimal places for fine-grained precision",
+    "Duration in compact format (15m32s)",
+    "Git branch display",
+    "Context color escalates from green to yellow to red at 65% and 85% usage",
+    "Zero dependencies beyond Node.js built-ins"
+  ]
+}

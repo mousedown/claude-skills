@@ -1,0 +1,30 @@
+{
+  "name": "Powerline Classic",
+  "description": "Agnoster-style powerline statusline with solid dark segments and right-arrow separators. Shows model, git branch, context usage, and session cost.",
+  "style": "powerline-segments",
+  "install": {
+    "1_copy_script": "cp statuslines/powerline-classic/powerline-classic.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": [
+    "jq",
+    "bc",
+    "git",
+    "Nerd Fonts"
+  ],
+  "features": [
+    "Classic Agnoster-style powerline arrows between segments",
+    "Segment 1: Model name on dark charcoal background",
+    "Segment 2: Git branch with staged/modified counts (gold text)",
+    "Segment 3: Context usage bar — color shifts with load (green/orange/red)",
+    "Segment 4: Session cost, duration, and lines changed",
+    "Smooth color transitions between all segments"
+  ]
+}

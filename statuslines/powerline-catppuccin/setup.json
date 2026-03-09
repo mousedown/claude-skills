@@ -1,0 +1,30 @@
+{
+  "name": "Powerline Catppuccin",
+  "description": "Soft pastel dark statusline with Catppuccin Mocha palette and floating diamond pill segments. Gentle lavender, sky blue, teal, and peach accents on dark base.",
+  "style": "powerline-pills",
+  "install": {
+    "1_copy_script": "cp statuslines/powerline-catppuccin/powerline-catppuccin.py ~/.claude/statusline.py",
+    "2_make_executable": "chmod +x ~/.claude/statusline.py",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.py"
+    }
+  },
+  "requirements": [
+    "python3",
+    "git",
+    "Nerd Fonts"
+  ],
+  "features": [
+    "Floating diamond pill segments (rounded caps) on terminal background",
+    "Catppuccin Mocha palette: mauve, sky blue, teal, peach, rosewater",
+    "Pill 1: Model name with star icon (mauve/lavender)",
+    "Pill 2: Context usage bar — teal at low, peach at medium, maroon at high",
+    "Pill 3: Session cost with diamond icon (rosewater)",
+    "Pill 4: Git branch with staged/modified counts (sky blue, when in repo)",
+    "Pill 5: Duration and lines changed (muted surface, secondary text)"
+  ]
+}

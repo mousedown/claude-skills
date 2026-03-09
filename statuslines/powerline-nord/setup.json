@@ -1,0 +1,29 @@
+{
+  "name": "Powerline Nord",
+  "description": "Two-line statusline with Nord arctic color palette and angled powerline segments. Top line shows model/context/cost; bottom shows git/duration/lines. Cold, clean, professional.",
+  "style": "powerline-two-line",
+  "install": {
+    "1_copy_script": "cp statuslines/powerline-nord/powerline-nord.js ~/.claude/statusline.js",
+    "2_make_executable": "chmod +x ~/.claude/statusline.js",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "node ~/.claude/statusline.js"
+    }
+  },
+  "requirements": [
+    "node",
+    "git",
+    "Nerd Fonts"
+  ],
+  "features": [
+    "Two-line layout: top for model/context/cost, bottom for git/duration/lines",
+    "Nord palette: frost blue, polar night charcoal, aurora semantic colors",
+    "Angled powerline arrow transitions between segments",
+    "Context bar shifts through aurora green/orange/red by load",
+    "Git branch with staged/modified file counts (bottom line)",
+    "Lines added/removed with aurora green and red coloring"
+  ]
+}

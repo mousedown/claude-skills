@@ -1,0 +1,17 @@
+{
+  "name": "Two-Line Statusline",
+  "description": "Two-row layout: line 1 shows session vitals (model, context bar, cost, time), line 2 shows work state (git branch, staged/modified counts, lines changed). Separates concerns vertically.",
+  "install": {
+    "1_copy_script": "cp statuslines/two-line/statusline.sh ~/.claude/statusline.sh",
+    "2_make_executable": "chmod +x ~/.claude/statusline.sh",
+    "3_add_to_settings": "Add the following to ~/.claude/settings.json"
+  },
+  "settings_snippet": {
+    "statusLine": {
+      "type": "command",
+      "command": "~/.claude/statusline.sh"
+    }
+  },
+  "requirements": ["jq", "bc", "git"],
+  "layout": "two-line"
+}
