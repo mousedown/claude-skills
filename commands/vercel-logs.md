@@ -1,3 +1,8 @@
+---
+description: Read Vercel deployment logs for a project and open GitHub issues for errors found.
+argument-hint: "[project] [--since=1h] [--repo=owner/repo]"
+---
+
 # Vercel Logs to GitHub Issues
 
 Read Vercel deployment logs for a project and create GitHub issues for any errors found.

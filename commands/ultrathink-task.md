@@ -1,3 +1,8 @@
+---
+description: Coordinator workflow orchestrating architect, research, coder, and tester sub-agents for a complex task.
+argument-hint: <task description>
+---
+
 # Usage
 
 `/project:ultrathink-task <TASK_DESCRIPTION>`
