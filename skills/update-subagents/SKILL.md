@@ -3,6 +3,7 @@ name: update-subagents
 description: |
   Interactively enable or disable subagents from the CLI. Shows a checklist of all available agents with their current status and lets the user toggle them on or off. Use when the user says "manage agents", "disable agent", "enable agent", "toggle agents", "list agents", or "/update-subagents".
 allowed-tools:
+    - Bash(find *)
     - Bash(ls *)
     - Bash(mv *)
     - Bash(cat *)
@@ -27,13 +28,13 @@ An agent is **enabled** if its file ends in `.md`. It is **disabled** if renamed
 
 ### 1. Discover all agents
 
-Scan both directories for `.md` and `.md.disabled` files:
+Scan both directories for `.md` and `.md.disabled` files. Use `find`, not a glob — under zsh an unmatched pattern (e.g. no disabled agents yet) aborts the whole command and hides every agent:
 
 ```bash
-ls -1 ~/.claude/agents/*.md ~/.claude/agents/*.md.disabled .claude/agents/*.md .claude/agents/*.md.disabled 2>/dev/null
+find ~/.claude/agents .claude/agents -maxdepth 1 -type f \( -name '*.md' -o -name '*.md.disabled' \) 2>/dev/null
 ```
 
-For each file, read the `name:` and `description:` from the YAML frontmatter.
+For each file, read the `name:` and `description:` from the YAML frontmatter — and keep its **actual filename**, which you need to toggle it (the filename may differ from `name:`).
 
 ### 2. Present the checklist
 
@@ -66,24 +67,18 @@ Group agents by scope: project-level first, then user-level. Within each group, 
 
 ### 3. Apply changes
 
-When the user specifies which agents to toggle:
+When the user specifies which agents to toggle, resolve each request to the **actual file discovered in step 1** — match case-insensitively against the agent's `name:` or its filename, then operate on that file's real path. The filename may differ from `name:` (e.g. a file `ba.md` whose frontmatter is `name: business-analyst`), so never rebuild the path from `name:`. Disabling appends `.disabled` to the whole filename (`ba.md` → `ba.md.disabled`).
 
-Use the correct path based on where the agent was discovered:
+Use `~/.claude/agents/` for user-level agents and `.claude/agents/` for project-level, matching where the file was found. With `{file}` = the discovered filename:
 
 **To disable:**
 ```bash
-# For user-level agents:
-mv ~/.claude/agents/{agent-name}.md ~/.claude/agents/{agent-name}.md.disabled
-# For project-level agents:
-mv .claude/agents/{agent-name}.md .claude/agents/{agent-name}.md.disabled
+mv ~/.claude/agents/{file} ~/.claude/agents/{file}.disabled
 ```
 
 **To enable:**
 ```bash
-# For user-level agents:
-mv ~/.claude/agents/{agent-name}.md.disabled ~/.claude/agents/{agent-name}.md
-# For project-level agents:
-mv .claude/agents/{agent-name}.md.disabled .claude/agents/{agent-name}.md
+mv ~/.claude/agents/{file}.disabled ~/.claude/agents/{file}
 ```
 
 ### 4. Confirm
@@ -113,7 +108,7 @@ Support these shorthand commands:
 
 ## Notes
 
-- Agent names are matched case-insensitively against the `name:` frontmatter field or filename
+- Agent names are matched case-insensitively against the `name:` frontmatter field or filename, then toggled by the file's real filename (which may differ from `name:`)
 - Disabled agents are invisible to Claude Code — they won't be auto-invoked or listed
 - Re-enabling restores the agent immediately for the next conversation
 - Project-level agents (in `.claude/agents/`) affect all contributors — confirm before toggling

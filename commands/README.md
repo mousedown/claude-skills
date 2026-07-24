@@ -5,8 +5,9 @@
 ## Install
 
 ```bash
-# All commands
-cp commands/*.md commands/*.js ~/.claude/commands/
+# All commands (skips README.md)
+mkdir -p ~/.claude/commands
+cp commands/[a-z]*.md commands/*.js ~/.claude/commands/
 
 # …or just one
 cp commands/prepare-PR.md ~/.claude/commands/
