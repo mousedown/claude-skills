@@ -24,9 +24,10 @@ See the full gallery and theme names in **[statuslines/README.md](statuslines/RE
 **Sub-agents, skills, and commands** are files you copy into your Claude Code config:
 
 ```bash
-cp agents/*.md              ~/.claude/agents/     # sub-agents
-cp -R skills/*              ~/.claude/skills/     # skills
-cp commands/*.md commands/*.js ~/.claude/commands/ # commands
+mkdir -p ~/.claude/agents ~/.claude/skills ~/.claude/commands
+cp agents/[a-z]*.md ~/.claude/agents/                          # sub-agents (skips README.md)
+for d in skills/*/; do cp -R "${d%/}" ~/.claude/skills/; done  # skills (folders only)
+cp commands/[a-z]*.md commands/*.js ~/.claude/commands/        # commands (skips README.md)
 ```
 
 Each has its own README with per-item detail and install notes. Use a project's `.claude/` directory instead of `~/.claude/` to scope any of them to a single repo.

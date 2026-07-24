@@ -16,8 +16,9 @@ agents/
 ## Install
 
 ```bash
-# All agents
-cp agents/*.md ~/.claude/agents/
+# All agents (skips README.md)
+mkdir -p ~/.claude/agents
+cp agents/[a-z]*.md ~/.claude/agents/
 
 # …or just one
 cp agents/code-reviewer.md ~/.claude/agents/

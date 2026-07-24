@@ -5,8 +5,9 @@
 ## Install
 
 ```bash
-# All skills
-cp -R skills/* ~/.claude/skills/
+# All skills (folders only — skips README.md)
+mkdir -p ~/.claude/skills
+for d in skills/*/; do cp -R "${d%/}" ~/.claude/skills/; done
 
 # …or just one
 cp -R skills/pr-review ~/.claude/skills/
