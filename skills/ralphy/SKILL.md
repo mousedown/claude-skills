@@ -57,9 +57,9 @@ Ask focused, sequential questions. Do NOT ask all at once. Group logically:
 - Environment variables or secrets needed?
 
 **Round 3 - Testing Strategy:**
-- What should be unit tested? (Vitest)
-- What requires browser validation? (Chrome)
-- What Next.js-specific checks are needed? (Next.js MCP)
+- What should be unit tested, and with which runner? (use the one already in the project — Vitest, Jest, pytest, go test, …)
+- What requires end-to-end or browser validation, if any? (web apps only — e.g. Playwright or Chrome)
+- Any framework-specific checks? (e.g. Next.js MCP error checking for a Next.js app)
 - Integration or E2E test requirements?
 
 **Round 4 - Validation & Quality:**
@@ -114,15 +114,16 @@ Generate a complete PROMPT.md with this structure:
 [Linting commands]
 
 ## Validation Requirements
+[Use the project's real tooling; include only the sections that apply.]
 
-### Unit Tests (Vitest)
+### Unit Tests ([project's test runner])
 [Specific unit test requirements and coverage expectations]
 
-### Browser Validation (Chrome)
-[What to check in Chrome, visual validations, user flows]
+### End-to-End / Browser Validation ([only if the project has a UI])
+[What to check, visual validations, user flows]
 
-### Next.js MCP Validation
-[Next.js specific checks - no console errors, hydration issues, etc.]
+### Framework-specific Validation ([only if applicable, e.g. Next.js MCP])
+[Framework-specific checks — e.g. no console errors, hydration issues]
 
 ## Coding Standards
 [Any specific patterns or practices to follow]
@@ -140,32 +141,32 @@ Generate a complete PROMPT.md with this structure:
 2. **One question group at a time**: Don't overwhelm the user
 3. **Confirm before generating**: Summarize understanding before creating PROMPT.md
 4. **Use discovered information**: Pre-fill answers based on codebase findings
-5. **Validation trifecta**: Every PROMPT.md MUST include:
-   - Vitest unit tests
-   - Chrome browser validation
-   - Next.js MCP error checking
+5. **Validation matched to the stack**: Every PROMPT.md MUST define concrete validation steps, but they must fit the project discovered in Phase 1 — never impose web-only tooling on a non-web project. Typically:
+   - Unit tests with the project's existing runner (Vitest/Jest/pytest/go test/…)
+   - End-to-end or browser validation only if the project has a UI (Playwright/Chrome/…)
+   - Framework-specific checks only where they apply (e.g. Next.js MCP error checking for a Next.js app)
 6. **Be opinionated**: Suggest better approaches clearly
 7. **Keep it actionable**: Every line should guide specific behavior
 
 ## Validation Specifics
 
-### Vitest Unit Tests
-- Ensure vitest is configured in the project
+Apply only the categories relevant to the discovered stack, and use the project's own tools.
+
+### Unit Tests
+- Use the project's existing test runner (Vitest, Jest, pytest, go test, …)
 - Define minimum coverage thresholds if appropriate
 - Specify what functions/components need unit tests
 - Include both happy path and error case testing
 
-### Chrome Browser Validation
-- Define specific pages/routes to check
-- List visual elements that must render correctly
+### End-to-End / Browser Validation (UI projects only)
+- Define specific pages/routes or flows to check
+- List elements that must render correctly
 - Specify user interactions to validate
 - Include responsive design checks if relevant
 
-### Next.js MCP Validation
-- Check for console errors during navigation
-- Validate no hydration mismatches
-- Ensure API routes respond correctly
-- Verify build completes without warnings
+### Framework-specific Validation (where applicable)
+- For a Next.js app: check for console errors, hydration mismatches, API route responses, and a clean build
+- For other frameworks, substitute the equivalent checks
 
 ## When Stuck or Unclear
 

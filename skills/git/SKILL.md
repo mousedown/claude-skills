@@ -1,5 +1,5 @@
 ---
-name: git-pushing
+name: git
 description: Stage, commit, and push git changes with conventional commit messages. Use when user wants to commit and push changes, mentions pushing to remote, or asks to save and push their work. Also activates when user says "push changes", "commit and push", or similar git workflow requests.
 ---
 
@@ -55,7 +55,8 @@ EOF
 ### 4. Push to Remote
 
 - Run `git push` to push commits
-- If push fails due to diverged branches, inform user and ask how to proceed
+- On the first push of a new branch (no upstream set), use `git push -u origin HEAD`
+- If push fails because the branch has diverged, inform the user and ask how to proceed — never force-push without explicit confirmation
 
 ### 5. Confirm Success
 
