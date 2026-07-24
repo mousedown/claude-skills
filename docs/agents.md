@@ -15,6 +15,8 @@ agents/
 
 ## Install
 
+**Easiest:** install the whole collection as a plugin — see the [root README quick-start](../README.md#quick-start). To copy just these agents manually:
+
 ```bash
 # All agents (skips README.md)
 mkdir -p ~/.claude/agents

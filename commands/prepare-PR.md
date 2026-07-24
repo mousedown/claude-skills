@@ -1,3 +1,7 @@
+---
+description: Run format/lint/build/typecheck, push a feature branch, and open a PR (linking any issue).
+---
+
 Run the following commands to prepare for a PR:
 
 1. **Format check**: `bun run format:check` (if available)
