@@ -1,0 +1,19 @@
+{
+  "name": "claude-skills",
+  "description": "Sub-agents, skills, and slash commands for Claude Code — code review, PR and PRD workflows, security audit, iOS, SEO, and more.",
+  "version": "1.0.0",
+  "author": {
+    "name": "mousedown"
+  },
+  "homepage": "https://github.com/mousedown/claude-skills",
+  "repository": "https://github.com/mousedown/claude-skills",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "skills",
+    "commands",
+    "code-review",
+    "pull-request",
+    "productivity"
+  ]
+}

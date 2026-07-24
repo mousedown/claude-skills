@@ -4,6 +4,8 @@
 
 ## Install
 
+**Easiest:** install the whole collection as a plugin — see the [root README quick-start](../README.md#quick-start). To copy just these skills manually:
+
 ```bash
 # All skills (folders only — skips README.md)
 mkdir -p ~/.claude/skills
