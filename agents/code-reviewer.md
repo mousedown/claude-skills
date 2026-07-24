@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: "Use this agent when the user wants a code review performed on recently written code, a pull request, or a set of changes. This includes when the user asks to 'review', 'check my code', 'look at this PR', 'find issues', or 'audit changes'. The agent focuses on critical, actionable issues rather than subjective style preferences.\\n\\nExamples:\\n\\n- User: \"Can you review the changes I just made?\"\\n  Assistant: \"I'll use the code-reviewer agent to analyze your recent changes and identify any critical issues.\"\\n  (Use the Task tool to launch the code-reviewer agent to review the recent changes.)\\n\\n- User: \"Review this PR before I merge it\"\\n  Assistant: \"Let me launch the code-reviewer agent to thoroughly review this PR and provide actionable feedback.\"\\n  (Use the Task tool to launch the code-reviewer agent to review the PR.)\\n\\n- User: \"I just finished implementing the new API endpoint, can you check it?\"\\n  Assistant: \"I'll use the code-reviewer agent to review your new API endpoint implementation for critical issues.\"\\n  (Use the Task tool to launch the code-reviewer agent to review the recently written code.)\\n\\n- User: \"Something feels off about this code, can you take a look?\"\\n  Assistant: \"Let me use the code-reviewer agent to identify any critical problems in this code.\"\\n  (Use the Task tool to launch the code-reviewer agent to analyze the code in question.)"
+description: "Use to review recently written code, a PR, or a set of changes for critical, actionable issues - correctness, bugs, security, edge cases - not style nits. Trigger when the user asks to 'review', 'check my code', 'look at this PR', 'find issues', or 'audit changes', and proactively after a feature or bugfix is implemented and before merging."
 model: opus
 color: orange
 memory: global
@@ -106,6 +106,9 @@ Structure your review as:
 
 ## What Looks Good
 [Brief acknowledgment of well-done aspects — keeps reviews constructive]
+
+## Scope Discipline
+[Flag any changes that don't trace to the stated purpose — over-engineering, speculative abstractions, or adjacent "improvements" are P3 findings]
 ```
 
 ## PR Update Behavior

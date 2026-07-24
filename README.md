@@ -1,182 +1,47 @@
-# Claude Code Statuslines
+# Claude Skills
 
-26 themes. One-line install: `curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s <theme>`
+A monorepo of extensions for [Claude Code](https://claude.com/claude-code) — **statuslines**, **sub-agents**, **skills**, and **slash commands** you can drop into your own setup. Browse a collection, copy what you want, and go.
 
----
+## Collections
 
-<img src="assets/screenshots/minimal-statusline.svg" alt="minimal" width="100%">
+| | Collection | Count | What it is |
+|---|---|---|---|
+| 🎨 | **[Statuslines](statuslines)** | 26 | Terminal statusline themes, from minimal to powerline to sci-fi. One-line install. |
+| 🤖 | **[Sub-Agents](agents)** | 8 | Specialised assistants Claude delegates to — code review, security audit, iOS, SEO, and more. |
+| 🧠 | **[Skills](skills)** | 9 | Packaged workflows Claude loads on demand — PR review, PRD authoring, git, and more. |
+| ⚡ | **[Commands](commands)** | 5 | Custom slash commands — `/prepare-PR`, `/ultrathink-task`, `/vercel-logs`, and more. |
 
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s minimal`
+## Quick start
 
----
+**Statuslines** install with a one-liner:
 
-<img src="assets/screenshots/compact-statusline.svg" alt="compact" width="100%">
+```bash
+curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s <theme>
+```
 
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s compact`
+See the full gallery and theme names in **[statuslines/README.md](statuslines/README.md)**.
 
----
+**Sub-agents, skills, and commands** are files you copy into your Claude Code config:
 
-<img src="assets/screenshots/plain-statusline.svg" alt="plain" width="100%">
+```bash
+cp agents/*.md              ~/.claude/agents/     # sub-agents
+cp -R skills/*              ~/.claude/skills/     # skills
+cp commands/*.md commands/*.js ~/.claude/commands/ # commands
+```
 
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s plain`
+Each has its own README with per-item detail and install notes. Use a project's `.claude/` directory instead of `~/.claude/` to scope any of them to a single repo.
 
----
+## Repo layout
 
-<img src="assets/screenshots/emoji-statusline.svg" alt="emoji" width="100%">
+```
+claude-skills/
+├── statuslines/   # 26 statusline themes + install.sh
+├── agents/        # 8 sub-agent definitions
+├── skills/        # 9 agent skills
+├── commands/      # 5 slash commands
+└── assets/        # shared screenshots
+```
 
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s emoji`
+## License
 
----
-
-<img src="assets/screenshots/zen-statusline.svg" alt="zen" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s zen`
-
----
-
-<img src="assets/screenshots/neon-tokyo.svg" alt="neon-tokyo" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s neon-tokyo`
-
----
-
-<img src="assets/screenshots/retro-terminal.svg" alt="retro-terminal" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s retro-terminal`
-
----
-
-<img src="assets/screenshots/hacker-matrix.svg" alt="hacker-matrix" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s hacker-matrix`
-
----
-
-<img src="assets/screenshots/scoreboard.svg" alt="scoreboard" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s scoreboard`
-
----
-
-<img src="assets/screenshots/time-machine.svg" alt="time-machine" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s time-machine`
-
----
-
-<img src="assets/screenshots/budget-tracker.svg" alt="budget-tracker" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s budget-tracker`
-
----
-
-<img src="assets/screenshots/git-dashboard.svg" alt="git-dashboard" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s git-dashboard`
-
----
-
-<img src="assets/screenshots/tokens-focus.svg" alt="tokens-focus" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s tokens-focus`
-
----
-
-<img src="assets/screenshots/powerline-arrows.svg" alt="powerline-arrows" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s powerline-arrows`
-
----
-
-<img src="assets/screenshots/powerline-classic.svg" alt="powerline-classic" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s powerline-classic`
-
----
-
-<img src="assets/screenshots/powerline-neon.svg" alt="powerline-neon" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s powerline-neon`
-
----
-
-<img src="assets/screenshots/powerline-gruvbox.svg" alt="powerline-gruvbox" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s powerline-gruvbox`
-
----
-
-<img src="assets/screenshots/powerline-nord.svg" alt="powerline-nord" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s powerline-nord`
-
----
-
-<img src="assets/screenshots/powerline-catppuccin.svg" alt="powerline-catppuccin" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s powerline-catppuccin`
-
----
-
-<img src="assets/screenshots/cost-tracker-statusline.svg" alt="cost-tracker" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s cost-tracker`
-
----
-
-<img src="assets/screenshots/gsd-statusline.svg" alt="gsd" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s gsd`
-
----
-
-<img src="assets/screenshots/centered.svg" alt="centered" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s centered`
-
----
-
-<img src="assets/screenshots/lcars.svg" alt="lcars" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s lcars`
-
----
-
-<img src="assets/screenshots/solarized.svg" alt="solarized" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s solarized`
-
----
-
-<img src="assets/screenshots/split-view.svg" alt="split-view" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s split-view`
-
----
-
-<img src="assets/screenshots/two-line.svg" alt="two-line" width="100%">
-
-`curl -fsSL https://raw.githubusercontent.com/mousedown/claude-skills/main/install.sh | bash -s two-line`
-
----
-
-## Choosing a Statusline
-
-| If you want... | Use |
-|---|---|
-| Least distraction | compact or plain |
-| Clean but informative | minimal |
-| Actual token numbers | tokens-focus |
-| Track spending closely | budget-tracker or cost-tracker |
-| Git status at a glance | git-dashboard or split-view |
-| Fun / expressive | emoji or zen |
-| Retro / hacker feel | hacker-matrix or retro-terminal |
-| Sci-fi / themed | lcars or neon-tokyo |
-| Neon / cyberpunk | neon-tokyo or powerline-neon |
-| Long session timing | time-machine |
-| Wide terminal, centered | centered |
-| Info density, no width | two-line |
-| Familiar color scheme | solarized |
-| Powerline (no Nerd Fonts) | powerline-arrows |
-| Powerline + Nerd Fonts | powerline-classic, powerline-gruvbox, powerline-nord, or powerline-catppuccin |
-| GSD workflow | gsd |
+[MIT](LICENSE) — free to use, modify, and share.

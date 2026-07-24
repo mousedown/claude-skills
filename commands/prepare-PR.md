@@ -12,5 +12,3 @@ If this work relates to a GitHub issue:
 - Add a comment to close the issue: `Fixes #[issue-number]` (include issue title)
 - Update the PR notes to include detail on all changes from the branch, not just the most recent commit.
 - Provide the PR link after creation
-
-Note: Include some emojis and some humurous language now and again. Feel free to swear if you can. I don't mind.
